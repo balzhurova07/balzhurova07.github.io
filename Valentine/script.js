@@ -205,40 +205,6 @@ if (document.body.id === 'page-step3') {
     // 4. Показываем «обманку» (она уже видна, но можно подсветить)
     afterReplyMessage.style.display = 'block'; // если вдруг скрыта
 });
-    
-    // ---------- АДМИН-ПАНЕЛЬ (по #admin в URL) ----------
-    function showAdminPanel() {
-        if (window.location.hash === '#admin') {
-            adminPanel.style.display = 'block';
-            loadReplies();
-        } else {
-            adminPanel.style.display = 'none';
-        }
-    }
-
-    function loadReplies() {
-        const replies = JSON.parse(localStorage.getItem('danilReplies')) || [];
-        if (replies.length === 0) {
-            savedRepliesDiv.innerHTML = '<p>Пока нет ответов 😢</p>';
-        } else {
-            let html = '';
-            replies.reverse().forEach(r => {
-                html += `<div style="border-bottom:1px solid #ffc0cb; padding:10px;">
-                            <small>${r.date}</small>
-                            <p style="font-weight:bold; margin:5px 0;">${r.text}</p>
-                        </div>`;
-            });
-            savedRepliesDiv.innerHTML = html;
-        }
-    }
-
-    // Очистка ответов
-    if (clearRepliesBtn) {
-        clearRepliesBtn.addEventListener('click', function() {
-            localStorage.removeItem('danilReplies');
-            loadReplies();
-        });
-    }
 
     // Показываем админку при загрузке, если есть хэш
     showAdminPanel();
@@ -287,5 +253,4 @@ if (document.body.id === 'page-step3') {
         // Следим за изменением хэша (если пользователь введёт #admin вручную)
         window.addEventListener('hashchange', showAdminPanel);
     }
-
 );
