@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>На сколько?💘</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body id="page-step2">
+    <div class="container">
+        <div class="step active">
+            <h2>На сколько процентов я тебе нравлюсь?</h2>
+            <img src="cute-cute-cat.gif" alt="милый кот" class="gif">
+            <!-- Можно вставить гифку -->
+            <!-- <img src="love.gif" alt="" class="gif"> -->
+
+            <div class="range-container">
+                <input type="range" id="loveScale" min="0" max="100" value="100">
+                <span id="scaleValue">100%</span>
+            </div>
+
+            <!-- Блок для сообщения при низком проценте -->
+            <div id="loveWarning" class="love-warning"></div>
+
+            <!-- Кнопка продолжения – onclick ПОЛНОСТЬЮ УДАЛЁН -->
+            <button id="continueBtn" class="btn">Продолжить 💞</button>
+            
+            <!-- Прозрачный текст – onclick ПОЛНОСТЬЮ УДАЛЁН -->
+            <div id="transparentText" class="corner-hint">
+                любовь не измеряется в процентах
+            </div>
+        </div>
+    </div>
+
+    <div class="music-control">
+        <audio id="bgMusic" loop>
+            <source src="picca-romans.mp3" type="audio/mpeg">
+        </audio>
+        <button id="musicToggleBtn">🎵 Включить музыку</button>
+    </div>
+</body>
+</html>

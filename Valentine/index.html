@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Валентинка💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body id="page-index">
+    <div class="container">
+        <div class="step active">
+            <h1>💌Я тебе нравлюсь?<br>Хотя бы немного?</h1>
+            <img src="кот-моргает.gif" alt="кот-моргает" class="gif">
+            <!-- Вставь сюда гифку/рисунок, например: -->
+            <!-- <img src="hello.gif" alt="милая гифка" class="gif"> -->
+            
+            <div class="button-wrapper">
+                <button id="noBtn" class="btn btn-no">Нет</button>
+                <button id="yesBtn" class="btn btn-yes" onclick="location.href='step2.html';">Да 🤍</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Музыкальный контрол (одинаковый на всех страницах) -->
+    <div class="music-control">
+        <audio id="bgMusic" loop>
+            <source src="picca-romans.mp3" type="audio/mpeg">
+        </audio>
+        <button id="musicToggleBtn">🎵 Включить музыку</button>
+    </div>
+</body>
+</html>
