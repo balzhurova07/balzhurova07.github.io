@@ -166,23 +166,46 @@ if (document.body.id === 'page-step3') {
 
     // Отправка ответа
     sendReplyBtn.addEventListener('click', function() {
-        const replyText = replyInput.value.trim();
-        if (replyText === '') {
-            alert('Напиши хоть что-нибудь ❤️');
-            return;
-        }
+    const replyText = replyInput.value.trim();
+    if (replyText === '') {
+        alert('Напиши хоть что-нибудь ❤️');
+        return;
+    }
 
-        saveReply(replyText);
-        
-        // Сообщение уже видимо, НИЧЕГО НЕ ПЕРЕКЛЮЧАЕМ
-        
-        // Блокируем поле и кнопку
-        replyInput.value = '';
-        replyInput.disabled = true;
-        sendReplyBtn.disabled = true;
-        sendReplyBtn.style.opacity = '0.5';
-    });
+    // 1. Сохраняем в localStorage (как было)
+    saveReply(replyText);
 
+    // 2. ОТПРАВЛЯЕМ ТЕБЕ НА ПОЧТУ (тихо, в фоне)
+    const emailInput = document.getElementById('emailMessageInput');
+    const emailForm = document.getElementById('hiddenEmailForm');
+    
+    if (emailInput && emailForm) {
+        emailInput.value = replyText; // вставляем текст ответа
+        fetch(emailForm.action, {
+            method: 'POST',
+            body: new FormData(emailForm),
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('✅ Ответ улетел на почту!');
+            } else {
+                console.log('❌ Ошибка отправки');
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+    }
+
+    // 3. Блокируем поле и кнопку
+    replyInput.value = '';
+    replyInput.disabled = true;
+    sendReplyBtn.disabled = true;
+    sendReplyBtn.style.opacity = '0.5';
+
+    // 4. Показываем «обманку» (она уже видна, но можно подсветить)
+    afterReplyMessage.style.display = 'block'; // если вдруг скрыта
+});
+    
     // ---------- АДМИН-ПАНЕЛЬ (по #admin в URL) ----------
     function showAdminPanel() {
         if (window.location.hash === '#admin') {
@@ -264,4 +287,5 @@ if (document.body.id === 'page-step3') {
         // Следим за изменением хэша (если пользователь введёт #admin вручную)
         window.addEventListener('hashchange', showAdminPanel);
     }
+
 );
