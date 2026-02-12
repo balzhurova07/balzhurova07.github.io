@@ -175,26 +175,27 @@ if (document.body.id === 'page-step3') {
     // 1. Сохраняем в localStorage (как было)
     saveReply(replyText);
 
-    // 2. ОТПРАВЛЯЕМ ТЕБЕ НА ПОЧТУ (тихо, в фоне)
-    const emailInput = document.getElementById('emailMessageInput');
-    const emailForm = document.getElementById('hiddenEmailForm');
-    
-    if (emailInput && emailForm) {
-        emailInput.value = replyText; // вставляем текст ответа
-        fetch(emailForm.action, {
-            method: 'POST',
-            body: new FormData(emailForm),
-            headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('✅ Ответ улетел на почту!');
-            } else {
-                console.log('❌ Ошибка отправки');
-            }
-        })
-        .catch(error => console.error('Ошибка:', error));
+    // 2. ОТПРАВЛЯЕМ ТЕБЕ НА ПОЧТУ (надёжный JSON-метод для GitHub Pages)
+fetch('https://formspree.io/f/ТВОЙ_КОД_СЮДА', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify({ 
+        message: replyText,
+        date: new Date().toLocaleString(),
+        from: 'Даниил'
+    })
+})
+.then(response => {
+    if (response.ok) {
+        console.log('✅ Ответ улетел на почту!');
+    } else {
+        console.log('❌ Ошибка отправки');
     }
+})
+.catch(error => console.error('Ошибка:', error));
 
     // 3. Блокируем поле и кнопку
     replyInput.value = '';
@@ -253,4 +254,5 @@ if (document.body.id === 'page-step3') {
         // Следим за изменением хэша (если пользователь введёт #admin вручную)
         window.addEventListener('hashchange', showAdminPanel);
     }
+
 );
