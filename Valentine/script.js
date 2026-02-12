@@ -176,7 +176,7 @@ if (document.body.id === 'page-step3') {
     saveReply(replyText);
 
     // 2. ОТПРАВЛЯЕМ ТЕБЕ НА ПОЧТУ (надёжный JSON-метод для GitHub Pages)
-fetch('https://formspree.io/f/ТВОЙ_КОД_СЮДА', {
+fetch('https://formspree.io/f/xqedpqbp', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -256,3 +256,4 @@ fetch('https://formspree.io/f/ТВОЙ_КОД_СЮДА', {
     }
 
 );
+
